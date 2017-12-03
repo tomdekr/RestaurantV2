@@ -4,6 +4,7 @@
 
 
 De app van week5, kijk voor info op de website.
+[![BCH compliance](https://bettercodehub.com/edge/badge/tomdekr/RestaurantV2?branch=master)](https://bettercodehub.com/)
 
 
 

@@ -1,14 +1,9 @@
 package com.example.tom_d.restaurantv2;
 
-
-
+import android.graphics.Color;
 import android.support.annotation.Nullable;
-
 import android.os.Bundle;
-
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +41,7 @@ public class BlankFragment extends ListFragment {
         super.onCreate(savedInstanceState);
 
         // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        RequestQueue queue = Volley.newRequestQueue(getContext());
 
         String url = "https://resto.mprog.nl/categories";
 
@@ -54,40 +49,29 @@ public class BlankFragment extends ListFragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
-                        //Log.d("my_test", response);
-                        JSONArray menuArray;
-
+                        JSONArray menu;
                         try {
                             JSONObject newObject = (JSONObject) new JSONTokener(response).nextValue();
-                            //ArrayList<String> listItems = new ArrayList<String>();
 
-                            menuArray = newObject.getJSONArray("categories");
-                            //mTextView.setText(menuArray.toString());
-                            for (int i = 0; i < menuArray.length(); i++) {
-                                //mTextView.setText(menuArray.getJSONObject(i).getString("name"));
-
-                                //mTextView.setText(menuArray.get(i).toString());
-                                //addItemToArray(menuArray.get(i).toString());
-                                addItemToArray(menuArray.get(i).toString());
+                            menu = newObject.getJSONArray("categories");
+                            for (int i = 0; i < menu.length(); i++) {
+                                addItemToArray(menu.get(i).toString());
                             }
                             SetAdapter();
-                            //this.setListAdapter();
-
                         } catch (JSONException e) {
                             e.printStackTrace();
 
                         }
-                        //mTextView.setText(listItems.toString());
+
                     }
 
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //mTextView.setText("That didn't work!");
-            }
+                            }
         });
         queue.add(stringRequest);
+
     }
 
     @Override
@@ -112,7 +96,7 @@ public class BlankFragment extends ListFragment {
     }
 
     public void SetAdapter() {
-        this.setListAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(),  android.R.layout.simple_list_item_1, categoryList));
+        this.setListAdapter(new ArrayAdapter<String>(getContext(),  android.R.layout.simple_list_item_1, categoryList));
 
     }
 

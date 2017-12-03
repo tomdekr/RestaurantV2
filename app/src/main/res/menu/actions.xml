@@ -5,5 +5,6 @@
         android:id="@+id/order"
         android:icon="@drawable/ic_shopping_basket_black_24dp"
         android:title="order"
+
         app:showAsAction="always"></item>
 </menu>
